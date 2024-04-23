@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using TutoralRazorPages2.Services;
+
 namespace TutoralRazorPages2
 {
     public class Program
@@ -8,6 +11,13 @@ namespace TutoralRazorPages2
 
             // Add services to the container.
             builder.Services.AddRazorPages();
+
+            builder.Services.AddDbContext<ApplicationDBContext>(options =>
+            {
+                string connectionString = builder.Configuration.GetConnectionString("DefaultConnection")!;
+                options.UseSqlServer(connectionString);
+            });
+             
 
             var app = builder.Build();
 
