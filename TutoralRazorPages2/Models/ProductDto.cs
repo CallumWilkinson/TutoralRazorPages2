@@ -8,7 +8,7 @@ namespace TutoralRazorPages2.Models
         [Required, MaxLength(100)]
         public string Name { get; set; } = "";
 
-        [Required, MaxLength(100, ErrorMessage ="Poop")]
+        [Required, MaxLength(100)]
         public string Brand { get; set; } = "";
 
         [Required, MaxLength(100)]
