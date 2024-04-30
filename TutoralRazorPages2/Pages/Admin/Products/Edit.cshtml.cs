@@ -48,5 +48,44 @@ namespace TutoralRazorPages2.Pages.Admin.Products
 
             Product = product;
         }
+
+
+        public void OnPost(int? id)
+        {
+            if(id == null)
+            {
+                Response.Redirect("/Admin/Products/Index");
+                return;
+            }
+
+            if(!ModelState.IsValid)
+            {
+                errorMessage = "Please provide all the required fields";
+                return;
+            }
+
+            var product = context.Products.Find(id);
+
+            if (product == null)
+            {
+                Response.Redirect("/Admin/Products/Index");
+                return;
+            }
+
+
+            //update the image file if we have a new image file
+
+
+
+            //update the product in the database
+
+
+
+            Product = product;
+
+            successMessage = "Product updated successfully";
+
+            Response.Redirect("/Admin/Products/Index");
+        }
     }
 }
