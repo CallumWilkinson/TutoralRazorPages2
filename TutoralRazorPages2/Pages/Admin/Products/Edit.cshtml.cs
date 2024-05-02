@@ -94,7 +94,14 @@ namespace TutoralRazorPages2.Pages.Admin.Products
 
 
             //update the product in the database
-
+            product.Name = ProductDto.Name;
+            product.Brand = ProductDto.Brand;
+            product.Category = ProductDto.Category;
+            product.Price = ProductDto.Price;
+            product.Description = ProductDto.Description ?? "";
+            product.ImageFileName = newFileName;
+            
+            context.SaveChanges();
 
 
             Product = product;
