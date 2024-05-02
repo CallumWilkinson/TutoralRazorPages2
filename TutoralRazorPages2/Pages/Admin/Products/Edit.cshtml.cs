@@ -74,6 +74,22 @@ namespace TutoralRazorPages2.Pages.Admin.Products
 
 
             //update the image file if we have a new image file
+            string newFileName = product.ImageFileName;
+            if (ProductDto.ImageFile != null)
+            {
+                newFileName = DateTime.Now.ToString("yyyyMMddHHmmssfff");
+                newFileName += Path.GetExtension(ProductDto.ImageFile.FileName);
+
+                string imageFullPath = environment.WebRootPath + "/CrudAppImages/" + newFileName;
+                using (var stream = System.IO.File.Create(imageFullPath))
+                {
+                    ProductDto.ImageFile.CopyTo(stream);
+                }
+
+                //delete the old image
+                string oldImageFullPath = environment.WebRootPath + "/CrudAppImages/" + product.ImageFileName;
+                System.IO.File.Delete(oldImageFullPath);
+            }
 
 
 
